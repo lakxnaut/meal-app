@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import classes from "./Meal.module.css";
 
 const Meal = () => {
-  const [mealData, setMealData] = useState();
+  const [mealData, setMealData] = useState(null);
+  const navigate = useNavigate();
 
   function getData() {
     const resp = axios(
@@ -13,16 +16,27 @@ const Meal = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  function onSingleHandler(id) {
+    navigate("/singlemeal", { state: { id } });
+  }
   return (
-    <div>
-      {mealData.map((item) => {
-        return (
-          <div>
-            <h1>{item.idMeal}</h1>
-            <img src={item.strMealThumb} alt="" />
-          </div>
-        );
-      })}
+    <div className={classes.AllMeals}>
+      {!mealData && <div>Hello</div>}
+      {mealData &&
+        mealData.map((item) => {
+          return (
+            <div
+              key={item.idMeal}
+              onClick={() => {
+                onSingleHandler(item.idMeal);
+              }}
+            >
+              <h1>{item.idMeal}</h1>
+              <img src={item.strMealThumb} alt="" />
+            </div>
+          );
+        })}
     </div>
   );
 };

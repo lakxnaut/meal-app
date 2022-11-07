@@ -1,0 +1,33 @@
+.AllMeals {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.AllMeals img {
+  width: 500px;
+}
+
+.AllMeals img:hover {
+  cursor: pointer;
+}
+
+.indegredents {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.indegredents h3 {
+  border-radius: 10px;
+  background-color: red;
+  padding: 10px;
+  color: white;
+}
+.SingleMeal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
